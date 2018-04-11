@@ -7,6 +7,7 @@
 -- two object meet together and make some sounds. Then move away.
 -----------------------------------------------------------------------------------------
 
+math.randomseed( os.time() )
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
@@ -34,9 +35,15 @@ Dog.id = "Dog"
 
 local function MoveImage(event)
 	-- add the scroll speed to the x-value of the image
-    NinjiaGirl.x = NinjiaGirl.x + scrollSpeed
+    local randomX = math.random ( -50, 50 ) 
+    local randomY = math.random ( -50, 50 )
+    print(randomX, randomY)
+
+    NinjiaGirl.x = NinjiaGirl.x + randomX
+    NinjiaGirl.y = NinjiaGirl.y + randomY
     Dog.x = Dog.x - scrollSpeed1
 end
 
 -- MoveNinjiaGirl will be called at program start over and over (60 frames or times per second)
 Runtime:addEventListener("enterFrame", MoveImage)
+
