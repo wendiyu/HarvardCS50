@@ -7,7 +7,8 @@
 -- two object meet together and make some sounds. Then move away.
 -----------------------------------------------------------------------------------------
 
-local soundEffect = audio.loadSound( "./assets/audio/hit.wav" )
+local soundEffect = audio.loadSound( "./assets/audio/airplane.wav" )
+audio.play( soundEffect )
 
 math.randomseed( os.time() )
 -- hide the status bar
@@ -62,9 +63,6 @@ end
 -- MoveNinjiaGirl will be called at program start over and over (60 frames or times per second)
 Runtime:addEventListener("enterFrame", MoveImage)
 
-audio.play( soundEffect )
-audio.setVolume( 0.5, { channel=1 } )
-
-if Dog.x == NinjiaGirl.x then
-	audio.play( soundEffect )
-end
+--audio.play( soundEffect )
+--audio.setVolume( 0.5, { channel=1 } )
+--audio.play( soundEffect )
