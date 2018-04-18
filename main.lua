@@ -7,8 +7,9 @@
 -- two object meet together and make some sounds. Then move away.
 -----------------------------------------------------------------------------------------
 
-local soundEffect = audio.loadSound( "./assets/audio/airplane.wav" )
-audio.play( soundEffect )
+-- start sound
+soundStarted = false   
+local soundEffect = audio.loadSound( "./assets/audio/hit.wav" )
 
 math.randomseed( os.time() )
 -- hide the status bar
@@ -42,6 +43,7 @@ Dog.id = "Dog"
 
 local function MoveImage(event)
 	-- add the scroll speed to the x-value of the image
+
 	local randomX = math.random ( 1, 20 ) 
 	local randomY = math.random ( 0, 10 )
 	print(randomX, randomY)
@@ -50,24 +52,21 @@ local function MoveImage(event)
 	NinjiaGirl.y = NinjiaGirl.y + randomY
 	Dog.x = Dog.x - scrollSpeed1
 
-    local randomX = math.random ( -50, 50 ) 
-    local randomY = math.random ( -50, 50 )
-    print(randomX, randomY)
+	local randomX = math.random ( -50, 50 ) 
+	local randomY = math.random ( -50, 50 )
+	print(randomX, randomY)
 
-    NinjiaGirl.x = NinjiaGirl.x + randomX
-    NinjiaGirl.y = NinjiaGirl.y + randomY
-    Dog.x = Dog.x - scrollSpeed1
+	NinjiaGirl.x = NinjiaGirl.x + randomX
+	NinjiaGirl.y = NinjiaGirl.y + randomY
+	Dog.x = Dog.x - scrollSpeed1
 
-    if  NinjiaGirl.x == Dog.x then
-		audio.play( soundEffect )
+	if  NinjiaGirl.x >= Dog.x then
+		if soundStarted == false then
+			audio.play( soundEffect )
+			soundStarted = true
+		end
 	end
 end
 
 -- MoveNinjiaGirl will be called at program start over and over (60 frames or times per second)
 Runtime:addEventListener("enterFrame", MoveImage)
-
-
---audio.play( soundEffect )
---audio.setVolume( 0.5, { channel=1 } )
---audio.play( soundEffect )
-
