@@ -58,11 +58,16 @@ local function MoveImage(event)
     NinjiaGirl.y = NinjiaGirl.y + randomY
     Dog.x = Dog.x - scrollSpeed1
 
+    if  NinjiaGirl.x == Dog.x then
+		audio.play( soundEffect )
+	end
 end
 
 -- MoveNinjiaGirl will be called at program start over and over (60 frames or times per second)
 Runtime:addEventListener("enterFrame", MoveImage)
 
+
 --audio.play( soundEffect )
 --audio.setVolume( 0.5, { channel=1 } )
 --audio.play( soundEffect )
+
